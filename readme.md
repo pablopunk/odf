@@ -3,10 +3,15 @@
 <p align="center">
   Open all the changed files in the current git repo
 </p>
+<p align="center">
+  <a href="https://www.npmjs.com/package/odf"><img src="https://img.shields.io/npm/dt/odf.svg" /></a>
+</p>
 
 ## Install
 
-Copy or link `odf` to a directory in your `$PATH`.
+```bash
+npm install -g odf
+```
 
 ## Usage
 
@@ -21,4 +26,4 @@ odf atom # open all the modified files with atom editor
 
 | ![me](https://www.gravatar.com/avatar/fa50aeff0ddd6e63273a068b04353d9d?s=100) |
 | ----------------------------------------------------------------------------- |
-| © 2017 [Pablo Varela](https://twitter.com/pablopunk)                          |
+| © 2017 [Pablo Varela](http://pablo.life)                                      |
