@@ -1,0 +1,25 @@
+{
+  "name": "odf",
+  "version": "1.0.0",
+  "description": "Open modified files in the current git repo.",
+  "main": "odf",
+  "bin": "odf",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pablopunk/odf.git"
+  },
+  "keywords": [
+    "files",
+    "git",
+    "modified",
+    "open",
+    "editor",
+    "bash"
+  ],
+  "author": "Pablo Varela",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pablopunk/odf/issues"
+  },
+  "homepage": "https://github.com/pablopunk/odf#readme"
+}
