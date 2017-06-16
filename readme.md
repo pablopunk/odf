@@ -21,6 +21,10 @@ Use `odf <editor>` to open all the modified files with the editor of your choice
 odf      # print all the modified files
 odf atom # open all the modified files with atom editor
 ```
+## License
+
+[__MIT license__](license)
+
 ## Author
 
 
