@@ -1,9 +1,17 @@
 #!/bin/bash
 
+files=$(git status --porcelain | sed s/^...//)
+
 if [ $# -eq 1 ]; then
-	editor=$1
+  editor=$1
 else
-	editor=echo
+  editor=echo
 fi
 
-git status --porcelain | sed s/^...// | xargs $editor
+if [[ "$editor" == *"vi"* ]]; then
+  editor="$editor -p"
+fi
+
+command="$editor $files"
+
+$command
