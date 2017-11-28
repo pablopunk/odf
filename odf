@@ -1,13 +1,21 @@
 #!/bin/bash
 
-files=$(git status --porcelain | sed s/^...//)
+# Files to be opened:
+## Modified files ignored deleted
+## New untracked files
+files=$( {\
+  ( git diff -w | grep "^+++ b" | sed 's,+++ b/,,' ) ; \
+  ( git status --porcelain | grep ?? | sed s/^??\ // )\
+} )
 
+# Use provided editor, 'echo' as default
 if [ $# -eq 1 ]; then
   editor=$1
 else
   editor=echo
 fi
 
+# For vi/vim/nvim open one tab per file
 if [[ "$editor" == *"vi"* ]]; then
   editor="$editor -p"
 fi
