@@ -5,7 +5,7 @@
 ## New untracked files
 files=$( {\
   ( git diff -w | grep "^+++ b" | sed 's,+++ b/,,' ) ; \
-  ( git status --porcelain | grep ?? | sed s/^??\ // ) \
+  ( git status --porcelain | grep "??" | sed s/^??\ // ) \
 } )
 
 # Use provided editor, 'echo' as default
