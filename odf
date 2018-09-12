@@ -1,5 +1,8 @@
 #!/bin/bash
 
+repo="$( git rev-parse --show-toplevel )"     # absolute path
+repo="$( realpath $repo --relative-to=$PWD )" # relative path
+
 # Files to be opened:
 ## Modified files ignored deleted
 ## New untracked files
@@ -20,6 +23,8 @@ if [[ "$editor" == *"vi"* ]]; then
   editor="$editor -p"
 fi
 
-command="$editor $files"
+# Add repo on spaces
+files="$(echo $files | sed "s@ @ $repo/@g")"
 
-$command
+# odf. Notice the first file was not prepended with repo
+$editor $repo/$files
