@@ -1,6 +1,6 @@
 {
   "name": "odf",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "description": "Open modified files in the current git repo.",
   "main": "odf",
   "bin": "odf",
