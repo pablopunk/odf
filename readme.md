@@ -18,9 +18,9 @@ npm install -g odf
 Use `odf <editor>` to open all the modified files with the editor of your choice:
 
 ```shell
-odf      # print all the modified files
-odf atom # open all the modified files with atom editor
-odf vi   # open files on different vim tabs
+odf       # print all the modified files
+odf atom  # open all the modified files with atom editor
+odf vi -p # open files on different vim tabs
 ```
 ## License
 

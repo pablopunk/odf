@@ -12,15 +12,10 @@ files=$( {\
 } )
 
 # Use provided editor, 'echo' as default
-if [ $# -eq 1 ]; then
-  editor=$1
+if [ $# -gt 0 ]; then
+  editor=$@
 else
   editor=echo
-fi
-
-# For vi/vim/nvim open one tab per file
-if [[ "$editor" == *"vi"* ]]; then
-  editor="$editor -p"
 fi
 
 # Add repo on spaces
