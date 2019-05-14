@@ -19,7 +19,7 @@ else
 fi
 
 # Add repo on spaces
-files="$(echo $files | sed "s@ @ $repo/@g")"
+files="$repo/$(echo $files | sed "s@ @ $repo/@g")"
 
-# odf. Notice the first file was not prepended with repo
-$editor $repo/$files
+# odf
+$editor $files
