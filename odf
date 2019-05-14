@@ -18,8 +18,10 @@ else
   editor=echo
 fi
 
-# Add repo on spaces
-files="$repo/$(echo $files | sed "s@ @ $repo/@g")"
+if [ ! -z "$files" ]; then
+  # Add repo on spaces
+  files="$repo/$(echo $files | sed "s@ @ $repo/@g")"
 
-# odf
-$editor $files
+  # odf
+  $editor $files
+fi
