@@ -13,14 +13,22 @@
 npm install -g odf
 ```
 
+Or use it without installing it:
+
+```bash
+npx odf
+```
+
 ## Usage
 
 Use `odf <editor>` to open all the modified files with the editor of your choice:
 
 ```shell
-odf       # print all the modified files
-odf atom  # open all the modified files with atom editor
-odf vi -p # open files on different vim tabs
+odf        # print all the modified files
+odf atom   # open all the modified files with atom editor
+odf vim    # open in vim (as buffers)
+odf vim -p # open in vim (as tabs)
+odf nvim   # open in neovim
 ```
 ## License
 
