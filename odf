@@ -1,27 +1,31 @@
 #!/bin/bash
 
-repo="$( git rev-parse --show-toplevel )"     # absolute path
-repo="$( realpath $repo --relative-to=$PWD 2>/dev/null )" # relative path
+# Get the absolute path of the top-level directory of the Git repository
+repo_abs_path="$(git rev-parse --show-toplevel)"
+# Convert to relative path, handling spaces correctly
+repo_rel_path="$(realpath --relative-to="$PWD" "$repo_abs_path" 2>/dev/null || echo "$repo_abs_path")"
 
-# Files to be opened:
-## Modified files ignored deleted
-## New untracked files
-files=$( {\
-  ( git diff -w | grep "^+++ b" | sed 's,+++ b/,,' ) ; \
-  ( git status --porcelain | grep "??" | sed s/^??\ // ) \
-} )
+# Initialize an array to store file paths
+files=()
 
-# Use provided editor, 'echo' as default
+# Fill the array with modified and new untracked file paths, trimming whitespace
+while IFS= read -r line; do
+  trimmed_line=$(echo "$line" | xargs)  # Trim leading and trailing whitespace
+  files+=("$repo_rel_path/$trimmed_line")
+done < <( \
+  git diff -w | grep "^+++ b" | sed 's,+++ b/,,' ; \
+  git status --porcelain | grep "??" | sed 's/^?? //' \
+)
+
+# Determine the editor to use
 if [ $# -gt 0 ]; then
-  editor=$@
+  editor="$@"
 else
-  editor=echo
+  editor="echo"
 fi
 
-if [ ! -z "$files" ]; then
-  # Add repo on spaces
-  files="$repo/$(echo $files | sed "s@ @ $repo/@g")"
-
-  # odf
-  $editor $files
+# Open files with the editor if there are any files to open
+if [ ${#files[@]} -gt 0 ]; then
+  "$editor" "${files[@]}"
 fi
+
