@@ -24,7 +24,7 @@ npx odf nvim
 ### Install with homebrew
 
 ```bash
-brew install odf
+brew install pablopunk/brew/odf
 ```
 
 ## Usage
