@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# if called with --version, print version from package.json and exit
-if [[ "$1" == "--version" ]]; then
-  cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g' | xargs
-  exit 0
-fi
-
 # Get the relative path of the Git repository (fallback to absolute path if needed)
 repo_path=$(git rev-parse --show-toplevel)
 repo_path=$(realpath --relative-to="$PWD" "$repo_path" 2>/dev/null || echo "$repo_path")
