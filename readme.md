@@ -9,14 +9,22 @@
 
 ## Install
 
+### Globally with npm
+
 ```bash
 npm install -g odf
 ```
 
-Or use it without installing it:
+### Execute directly with npx
 
 ```bash
-npx odf
+npx odf nvim
+```
+
+### Install with homebrew
+
+```bash
+brew install odf
 ```
 
 ## Usage
