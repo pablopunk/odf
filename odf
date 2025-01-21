@@ -23,7 +23,6 @@ if $use_pr; then
   else
     base_branch="origin/master"
   fi
-  echo $base_branch
   cmd_output="$(git diff --name-only $(git merge-base $base_branch HEAD))"
 else
   cmd_output="$(git diff -w --name-only; git ls-files --others --exclude-standard)"
