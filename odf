@@ -4,15 +4,35 @@
 repo_path=$(git rev-parse --show-toplevel)
 repo_path=$(realpath --relative-to="$PWD" "$repo_path" 2>/dev/null || echo "$repo_path")
 
+# Check for the --pr flag
+use_pr=false
+if [[ "$1" == "--pr" ]]; then
+  use_pr=true
+  shift # Remove the --pr flag from the arguments
+fi
+
 # Use provided editor or 'echo' as default
 editor="${@:-echo}"
 
 files=()
 
+cmd_output=""
+if $use_pr; then
+  # Determine if the base branch is origin/master or origin/main
+  if git show-ref --verify --quiet refs/remotes/origin/master; then
+    base_branch="origin/master"
+  else
+    base_branch="origin/main"
+  fi
+  cmd_output="$(git diff --name-only $(git merge-base $base_branch HEAD))"
+else
+  cmd_output="$(git diff -w --name-only; git ls-files --others --exclude-standard)"
+fi
+
 # Collect modified and untracked file paths
 while IFS= read -r file; do
   files+=("$file")
-done < <(git diff -w --name-only; git ls-files --others --exclude-standard)
+done < <(echo "$cmd_output")
 
 # Prepend repository path and trim whitespace
 for i in "${!files[@]}"; do
